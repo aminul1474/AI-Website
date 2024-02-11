@@ -10,7 +10,7 @@ function NavMenu() {
 
   return (
     <nav>
-      <ul>
+      <ul className=" flex gap-2 ">
         {menuInfo?.map((vl, index) => (
           <li key={menuInfo?.[index]?.id}>
             <NavLink to={menuInfo?.[index]?.url}>
