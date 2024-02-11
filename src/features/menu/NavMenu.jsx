@@ -1,21 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
 import { NavLink } from "react-router-dom";
+import { getMenu } from "../../services/apiMenu";
 
 function NavMenu() {
+  const { data: menuInfo } = useQuery({
+    queryKey: ["menu"],
+    queryFn: getMenu,
+  });
+
   return (
     <nav>
       <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/product">Product</NavLink>
-        </li>
-        <li>
-          <NavLink to="/about">about</NavLink>
-        </li>
-        <li>
-          <NavLink to="/contact">contact</NavLink>
-        </li>
+        {menuInfo?.map((vl, index) => (
+          <li key={menuInfo?.[index]?.id}>
+            <NavLink to={menuInfo?.[index]?.url}>
+              {menuInfo?.[index]?.navItemName}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
