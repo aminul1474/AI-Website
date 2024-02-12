@@ -1,6 +1,6 @@
-import supabase from "./supabase";
+import supabase from "../../services/supabase";
 
-export async function getMenu(){
+export async function getLogo(){
 let { data: logo, error } = await supabase
 .from('logo')
 .select('*')

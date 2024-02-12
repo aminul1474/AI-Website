@@ -1,8 +1,10 @@
 function Footer() {
   return (
-    <div>
-      <p className="bg-slate-900 sm:bg-slate-200">footer copy right text</p>
-    </div>
+    <footer className="bg-gray-800 text-white">
+      <div className="mx-auto text-center">
+        <p>&copy; 2024 My Website. All Rights Reserved.</p>
+      </div>
+    </footer>
   );
 }
 
