@@ -35,9 +35,11 @@ function InputFile({ index }) {
   return (
     <input
       type="file"
+      id="image"
       accept="image/*"
-      id={SBCN[index]}
-      {...register(SBCN[index])}
+      {...register("image", {
+        required: "this is requed field",
+      })}
     />
   );
 }
