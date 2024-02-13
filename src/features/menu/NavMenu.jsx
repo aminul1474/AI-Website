@@ -3,7 +3,7 @@ import Logo from "../../ui/Logo";
 import Modal from "/src/ai-dev/ai-ui/Modal";
 import { useState } from "react";
 import { HiOutlinePaperClip, HiTrash } from "react-icons/hi2";
-import { useCRUD } from "../../ai-dev/ai-ui/CRUD";
+import { useCRUD } from "../../ai-dev/ai-ui/useCRUD";
 import FormCCP from "../../ai-dev/ai-ui/FormCCP";
 
 function NavMenu() {
@@ -11,7 +11,6 @@ function NavMenu() {
   const [showForm, setShowForm] = useState(false);
   //!dev--end
   const [readItem, deleteItem, createItem] = useCRUD("menu"); //!dev deleteItem, createItem
-  console.log(readItem);
 
   return (
     <>
@@ -21,7 +20,7 @@ function NavMenu() {
             <Logo />
           </a>
           <ul className="flex space-x-4">
-            {readItem?.map((vl, index) => (
+            {readItem?.map((vl) => (
               <li key={vl?.id}>
                 <NavLink className="hover:text-gray-300" to={vl?.url}>
                   {vl?.navItemName}

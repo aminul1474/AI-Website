@@ -21,11 +21,12 @@ export async function deleteData(id,key){
   if(error){
     //console.error(error);
     throw new Error('Data could not be loaded')
-}
+  }
 }
 
 export async function createData(newData,key){
-    const { data, error } = await supabase
+
+  const { data, error } = await supabase
   .from(key)
   .insert([newData])
   .select()
@@ -33,6 +34,8 @@ export async function createData(newData,key){
   if(error){
     //console.error(error);
     throw new Error('Data could not be Created')
-}
+  }
+
+
 return data;
 }
