@@ -1,8 +1,8 @@
 import supabase from "../../services/supabase"
 
-export async function getData(key){
+export async function getData(SBfield){
     let { data, error } = await supabase
-    .from(key)
+    .from(SBfield)
     .select('*')
   
     if(error){
@@ -12,9 +12,9 @@ export async function getData(key){
     return data;
 }
 
-export async function deleteData(id,key){
+export async function deleteData(id,SBfield){
     const { error } = await supabase
-  .from(key)
+  .from(SBfield)
   .delete()
   .eq('id', id)
 
@@ -24,10 +24,10 @@ export async function deleteData(id,key){
   }
 }
 
-export async function createData(newData,key){
+export async function createData(newData,SBfield){
 
   const { data, error } = await supabase
-  .from(key)
+  .from(SBfield)
   .insert([newData])
   .select()
 

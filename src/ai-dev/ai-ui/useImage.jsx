@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { getImage } from "../ai-service/apiImage";
 
-export function useImage(fieldName, uniqueKey) {
+export function useImage(fieldName) {
   const { data } = useQuery({
-    queryKey: [uniqueKey],
+    queryKey: [fieldName],
     queryFn: () => getImage(fieldName),
   });
 

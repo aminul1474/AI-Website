@@ -6,7 +6,7 @@ import { HiOutlinePaperClip } from "react-icons/hi2";
 
 function Logo() {
   const [showForm, setShowForm] = useState(false); //!dev
-  const [url] = useImage("logo", "u-key-logo");
+  const [url] = useImage("logo");
 
   return (
     <>
@@ -21,11 +21,7 @@ function Logo() {
       </button>
       {showForm && ( //!dev
         <Modal setShowForm={setShowForm}>
-          <FileCCP
-            fieldName="logo"
-            uniqueKey="u-key-logo"
-            storageName="logo-image"
-          >
+          <FileCCP fieldName="logo" storageName="logo-image">
             <FileCCP.InputFile />
             <FileCCP.Submit />
           </FileCCP>

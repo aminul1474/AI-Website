@@ -5,11 +5,11 @@ import { createImage, deleteImage, getImage } from "../ai-service/apiImage";
 
 const imageContext = createContext();
 
-function FileCCP({ children, fieldName, uniqueKey, storageName }) {
+function FileCCP({ children, fieldName, storageName }) {
   const { register, handleSubmit, reset } = useForm();
 
   const { data: readData } = useQuery({
-    queryKey: [uniqueKey],
+    queryKey: [fieldName],
     queryFn: () => getImage(fieldName),
   });
 
@@ -18,7 +18,7 @@ function FileCCP({ children, fieldName, uniqueKey, storageName }) {
     mutationFn: (id) => deleteImage(id, fieldName),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [uniqueKey],
+        queryKey: [fieldName],
       });
     },
   });
@@ -27,7 +27,7 @@ function FileCCP({ children, fieldName, uniqueKey, storageName }) {
       createImage(newImage, id, fieldName, storageName),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [uniqueKey],
+        queryKey: [fieldName],
       });
       reset();
     },
