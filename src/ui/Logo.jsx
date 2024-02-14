@@ -1,61 +1,36 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createLogo, deleteLogo, getLogo } from "../services/apiLogo";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import FileCCP from "../ai-dev/ai-ui/FileCCP";
+import Modal from "../ai-dev/ai-ui/Modal";
+import { useImage } from "../ai-dev/ai-ui/useImage";
+import { HiOutlinePaperClip } from "react-icons/hi2";
 
 function Logo() {
-  const { register, handleSubmit, reset } = useForm();
+  const [showForm, setShowForm] = useState(false); //!dev
+  const [url] = useImage("logo", "u-key-logo");
 
-  const { data: logoData } = useQuery({
-    queryKey: ["u-key-logo"],
-    queryFn: getLogo,
-  });
-
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: (id) => deleteLogo(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["u-key-logo"],
-      });
-    },
-  });
-  const { mutate: handleMutate } = useMutation({
-    mutationFn: ({ newLogo, id }) => createLogo(newLogo, id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["u-key-logo"],
-      });
-      reset();
-    },
-  });
-
-  function handleFile(data) {
-    // handleMutate(data);
-    handleMutate({
-      newLogo: { ...data, image: data.image[0] },
-      id: logoData?.[0]?.id,
-    });
-    // console.log({ ...data, image: data.image[0] });
-  }
-
-  console.log(logoData);
   return (
     <>
       <div className=" max-h-32  max-w-32">
-        <img src={`${logoData?.[0]?.image}`} alt="logo" />
-        <button onClick={() => mutate(logoData?.[0]?.id)}>delete</button>
+        <img src={url} alt="logo" />
       </div>
-      <form onSubmit={handleSubmit(handleFile)}>
-        <input
-          type="file"
-          id="image"
-          accept="image/*"
-          {...register("image", {
-            required: "this is requed field",
-          })}
-        />
-        <button>add</button>
-      </form>
+      <button onClick={() => setShowForm((bl) => !bl)}>
+        {
+          //!dev --button
+        }
+        <HiOutlinePaperClip />
+      </button>
+      {showForm && ( //!dev
+        <Modal setShowForm={setShowForm}>
+          <FileCCP
+            fieldName="logo"
+            uniqueKey="u-key-logo"
+            storageName="logo-image"
+          >
+            <FileCCP.InputFile />
+            <FileCCP.Submit />
+          </FileCCP>
+        </Modal>
+      )}
     </>
   );
 }

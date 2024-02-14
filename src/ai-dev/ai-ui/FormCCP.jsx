@@ -30,19 +30,7 @@ function Input({ index }) {
   const { SBCN, register } = useContext(formContext);
   return <input type="text" id={SBCN[index]} {...register(SBCN[index])} />;
 }
-function InputFile({ index }) {
-  const { SBCN, register } = useContext(formContext);
-  return (
-    <input
-      type="file"
-      id="image"
-      accept="image/*"
-      {...register("image", {
-        required: "this is requed field",
-      })}
-    />
-  );
-}
+
 function Submit() {
   return (
     <button className=" rounded-full bg-green-300 hover:bg-green-500">
@@ -54,6 +42,5 @@ function Submit() {
 FormCCP.Label = Label;
 FormCCP.Input = Input;
 FormCCP.Submit = Submit;
-FormCCP.InputFile = InputFile;
 
 export default FormCCP;
