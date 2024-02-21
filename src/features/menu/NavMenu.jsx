@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import Logo from "../../ui/Logo";
+import Logo from "./Logo";
+import Cart from "../cart/Cart";
 import Modal from "/src/ai-dev/ai-ui/Modal";
 import { useState } from "react";
 import { HiOutlinePaperClip, HiTrash } from "react-icons/hi2";
@@ -38,6 +39,7 @@ function NavMenu() {
               <HiOutlinePaperClip />
             </button>
           </ul>
+          <Cart />
         </div>
       </nav>
       {showForm && ( //!dev

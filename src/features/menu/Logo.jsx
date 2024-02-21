@@ -1,7 +1,7 @@
 import { useState } from "react";
-import FileCCP from "../ai-dev/ai-ui/FileCCP";
-import Modal from "../ai-dev/ai-ui/Modal";
-import { useImage } from "../ai-dev/ai-ui/useImage";
+import FileCCP from "../../ai-dev/ai-ui/FileCCP";
+import Modal from "../../ai-dev/ai-ui/Modal";
+import { useImage } from "../../ai-dev/ai-ui/useImage";
 import { HiOutlinePaperClip } from "react-icons/hi2";
 
 function Logo() {

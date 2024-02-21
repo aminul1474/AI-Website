@@ -3,12 +3,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Product from "./pages/Product";
 import PageNotFound from "./pages/PageNotFound";
-import Layout from "./ui/Layout";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Layout from "./features/body/Layout";
 
 const queryClient = new QueryClient({
   defaultOptions: {
