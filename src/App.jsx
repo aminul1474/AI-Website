@@ -6,6 +6,7 @@ import PageNotFound from "./pages/PageNotFound";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import Calculation from "./pages/Calculation";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Layout from "./features/body/Layout";
@@ -29,6 +30,7 @@ function App() {
             <Route path="/product" element={<Product />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/calculation" element={<Calculation />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
           <Route path="/login" element={<Login />} />
