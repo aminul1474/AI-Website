@@ -39,6 +39,7 @@ function NavMenu() {
               <HiOutlinePaperClip />
             </button>
           </ul>
+
           <Cart />
         </div>
       </nav>
