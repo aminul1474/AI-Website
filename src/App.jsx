@@ -28,14 +28,14 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Homepage />} />
+              <Route path="/home" element={<Homepage />} />
               <Route path="/product" element={<Product />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/calculation" element={<Calculation />} />
+            <Route path="/" element={<Calculation />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

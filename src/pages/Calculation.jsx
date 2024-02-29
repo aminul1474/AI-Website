@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useCRUD } from "../ai-dev/ai-ui/useCRUD";
 import { useState } from "react";
 import { HiTrash } from "react-icons/hi2";
+import { NavLink } from "react-router-dom";
 
 const Form = styled.form`
   display: grid;
@@ -74,6 +75,7 @@ function Calculation() {
 
   return (
     <>
+      <NavLink to="/home">home</NavLink>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>📏 Length</label>
         <Div>
