@@ -56,7 +56,11 @@ function User() {
 
   return (
     <Div>
-      <img src={user.avatar} alt={user.name} />
+      <img
+        className="animate-[slideUpfadeIn_1s_ease-in-out]"
+        src={user.avatar}
+        alt={user.name}
+      />
       <span>Welcome, {user.name}</span>
       <button onClick={handleClick}>Logout</button>
     </Div>

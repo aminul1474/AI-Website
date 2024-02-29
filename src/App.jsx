@@ -32,10 +32,10 @@ function App() {
               <Route path="/product" element={<Product />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/calculation" element={<Calculation />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/calculation" element={<Calculation />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

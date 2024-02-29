@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import styled from "styled-components";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 const content = [
   {
@@ -101,8 +102,16 @@ function TabContent() {
       {showDetails && <p>{content.at(activeTab).details}</p>}
 
       <Div2>
-        <button onClick={() => setShowDetails((h) => !h)}>
-          {showDetails ? "Hide" : "Show"} details
+        <button
+          className=" flex items-end "
+          onClick={() => setShowDetails((h) => !h)}
+        >
+          <span> {showDetails ? "Hide" : "Show"} details </span>
+          <span>
+            <IoMdArrowDropdown
+              className={`size-5 transition-all duration-300 ${showDetails ? "rotate-180" : ""} `}
+            />
+          </span>
         </button>
       </Div2>
     </Div>
