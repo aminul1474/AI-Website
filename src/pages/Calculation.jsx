@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { AiOutlineColumnWidth, AiOutlineColumnHeight } from "react-icons/ai";
+import { IoHome } from "react-icons/io5";
 import useFetch from "../hook/useFetch";
 import styled from "styled-components";
 import { useCRUD } from "../ai-dev/ai-ui/useCRUD";
@@ -75,7 +76,6 @@ function Calculation() {
 
   return (
     <>
-      <NavLink to="/home">home</NavLink>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>📏 Length</label>
         <Div>
@@ -160,6 +160,13 @@ function Calculation() {
         setCurData={setCurData}
       />
       <CalculationResult currentData={currentData} />
+      <div className=" flex justify-end">
+        <NavLink to="/home">
+          <span className=" inline-block  rounded-full bg-blue-700 p-4">
+            <IoHome className=" h-6 w-6 text-stone-400" />
+          </span>
+        </NavLink>
+      </div>
     </>
   );
 }
