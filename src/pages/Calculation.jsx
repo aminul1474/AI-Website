@@ -218,7 +218,7 @@ function Item({ vl, setCurData, currentData, deleteItem, index, readItem }) {
             : `Select ${readItem.length === index + 1 ? "new" : index + 1} `}
         </button>
         {boolenValue && (
-          <div>
+          <div className=" grid">
             <span className="mx-1 bg-yellow-500/15 px-2 ">
               Length {vl.lengthFeet}'{vl.lengthInch === "" ? 0 : vl.lengthInch}"
             </span>
