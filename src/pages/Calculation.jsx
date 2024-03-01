@@ -54,9 +54,18 @@ const Btn = styled.button`
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 5px;
   &:hover {
     background-color: #ff922b;
   }
+`;
+const Li = styled.li`
+  background-color: #0c0c0da0;
+  ${({ open }) =>
+    open &&
+    `
+    background-color: #a6a7c4;
+  `}
 `;
 
 function Calculation() {
@@ -171,52 +180,63 @@ function Calculation() {
   );
 }
 
-const Li = styled.li`
-  ${({ open }) =>
-    open &&
-    `
-    background-color: #a6a7c4;
-  `}
-`;
-
 function CalculationList({ currentData, setCurData, readItem, deleteItem }) {
   return (
-    <ul>
-      {readItem?.map((vl) => (
+    <ul className=" my-2 grid gap-[2px] bg-[#6d46b43b] py-[2px]">
+      {readItem?.map((vl, index) => (
         <Item
           key={vl.id}
+          index={index}
           vl={vl}
           currentData={currentData}
           setCurData={setCurData}
           deleteItem={deleteItem}
+          readItem={readItem}
         />
       ))}
     </ul>
   );
 }
-function Item({ vl, setCurData, currentData, deleteItem }) {
+function Item({ vl, setCurData, currentData, deleteItem, index, readItem }) {
   const boolenValue = currentData.id === vl.id;
   function handleSelectData(getData) {
     setCurData(getData.id === currentData.id ? "" : getData);
   }
+  console.log(vl);
   return (
     <Li open={boolenValue}>
-      <h2>
-        <button onClick={() => deleteItem(vl?.id)}>
+      <div className=" flex justify-between">
+        <button
+          className=" py-3"
+          id={`${vl.id}`}
+          onClick={() => {
+            handleSelectData(vl);
+          }}
+        >
+          {boolenValue
+            ? `Close ${readItem.length === index + 1 ? "new" : index + 1} `
+            : `Select ${readItem.length === index + 1 ? "new" : index + 1} `}
+        </button>
+        {boolenValue && (
+          <div>
+            <span className="mx-1 bg-yellow-500/15 px-2 ">
+              Length {vl.lengthFeet}'{vl.lengthInch === "" ? 0 : vl.lengthInch}"
+            </span>
+            <span className="mx-1 bg-green-500/15 px-2 ">
+              Width {vl.widthFeet}'{vl.widthInch === "" ? 0 : vl.widthInch}"
+            </span>
+            <span className="mx-1 bg-red-500/15 px-2 ">
+              Height {vl.heightFeet}'{vl.heightInch === "" ? 0 : vl.heightInch}"
+            </span>
+          </div>
+        )}
+        <button className=" p-3" onClick={() => deleteItem(vl?.id)}>
           {
             //!dev  --button
           }
-          <HiTrash />
+          <HiTrash className="h-5 w-5  text-red-700" />
         </button>
-        Result:0
-      </h2>
-      <button
-        onClick={() => {
-          handleSelectData(vl);
-        }}
-      >
-        {boolenValue ? "Close" : "Select"}
-      </button>
+      </div>
     </Li>
   );
 }
