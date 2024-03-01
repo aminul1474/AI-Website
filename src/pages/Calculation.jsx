@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { AiOutlineColumnWidth, AiOutlineColumnHeight } from "react-icons/ai";
 import { IoHome } from "react-icons/io5";
-import useFetch from "../hook/useFetch";
+// import useFetch from "../hook/useFetch";
 import styled from "styled-components";
 import { useCRUD } from "../ai-dev/ai-ui/useCRUD";
 import { useState } from "react";
@@ -71,9 +71,9 @@ const Li = styled.li`
 function Calculation() {
   const [currentData, setCurData] = useState("");
   const { register, handleSubmit, reset } = useForm();
-  const [data] = useFetch(
-    "https://api.fastforex.io/fetch-all?api_key=c91489fd86-2d3109a8f3-s98zbt",
-  );
+  // const [data] = useFetch(
+  //   "https://api.fastforex.io/fetch-all?api_key=c91489fd86-2d3109a8f3-s98zbt",
+  // );
 
   const [readItem, deleteItem, createItem] = useCRUD("calculator");
 
@@ -148,15 +148,16 @@ function Calculation() {
         <Input
           id="perCFTdollar"
           {...register("perCFTdollar")}
-          placeholder="dollar"
+          placeholder="tk"
           type="number"
         />
-        <label>1Dollar = </label>
+        <label>Total CFT </label>
         <Input
-          defaultValue={data?.results?.BDT}
+          className=" max-w-20"
+          // defaultValue={data?.results?.BDT}
           id="tk"
           {...register("tk")}
-          placeholder="tk"
+          placeholder="cft"
           type="number"
         />
         <Btn>Calculation</Btn>
@@ -202,7 +203,7 @@ function Item({ vl, setCurData, currentData, deleteItem, index, readItem }) {
   function handleSelectData(getData) {
     setCurData(getData.id === currentData.id ? "" : getData);
   }
-  console.log(vl);
+  console.log(index);
   return (
     <Li open={boolenValue}>
       <label className=" flex justify-between">
@@ -258,15 +259,23 @@ function CalculationResult({ currentData }) {
     (Number(heightFeet) + Number(heightInch) / 12);
 
   const priceInDolar = cft * Number(perCFTdollar);
-  const priceInTK = priceInDolar * Number(tk);
+  const priceInTK = perCFTdollar * tk;
   return (
     <div>
-      <h3>Stone CFT(volume) Calculation</h3>
-      <p>
-        Volume(CFT): <strong>{cft ? cft : 0}</strong>{" "}
-      </p>
-      <p>Price In Dollar: ${priceInDolar ? priceInDolar : 0}</p>
-      <p>Price In TK: {priceInTK ? priceInTK : 0}TK</p>
+      {!tk ? (
+        <div>
+          <h3>Stone CFT(volume) Calculation</h3>
+          <p>
+            Volume(CFT): <strong>{cft ? cft : 0}</strong>{" "}
+          </p>
+          <p>Price: {priceInDolar ? Math.round(priceInDolar) : 0} tk</p>
+          {/* <p>Price In TK: {priceInTK ? priceInTK : 0}TK</p> */}
+        </div>
+      ) : (
+        <div>
+          Price: <strong>{priceInTK}</strong> tk
+        </div>
+      )}
     </div>
   );
 }
