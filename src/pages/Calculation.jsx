@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 const Form = styled.form`
   display: grid;
   align-items: center;
-  gap: 1.2rem;
+  /* gap: 1.2rem; */
 
   background-color: #fff4e6;
   border-radius: 7px;
