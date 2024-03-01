@@ -205,7 +205,7 @@ function Item({ vl, setCurData, currentData, deleteItem, index, readItem }) {
   console.log(vl);
   return (
     <Li open={boolenValue}>
-      <div className=" flex justify-between">
+      <label className=" flex justify-between">
         <button
           className=" py-3"
           id={`${vl.id}`}
@@ -236,7 +236,7 @@ function Item({ vl, setCurData, currentData, deleteItem, index, readItem }) {
           }
           <HiTrash className="h-5 w-5  text-red-700" />
         </button>
-      </div>
+      </label>
     </Li>
   );
 }
