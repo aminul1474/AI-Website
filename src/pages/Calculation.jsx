@@ -170,6 +170,7 @@ function Calculation() {
         setCurData={setCurData}
       />
       <CalculationResult currentData={currentData} />
+
       <div className=" flex justify-end">
         <NavLink to="/home">
           <span className=" inline-block  rounded-full bg-blue-700 p-4">
@@ -203,7 +204,6 @@ function Item({ vl, setCurData, currentData, deleteItem, index, readItem }) {
   function handleSelectData(getData) {
     setCurData(getData.id === currentData.id ? "" : getData);
   }
-  console.log(index);
   return (
     <Li open={boolenValue}>
       <label className=" flex justify-between">
@@ -218,7 +218,7 @@ function Item({ vl, setCurData, currentData, deleteItem, index, readItem }) {
             ? `Close ${readItem.length === index + 1 ? "new" : index + 1} `
             : `Select ${readItem.length === index + 1 ? "new" : index + 1} `}
         </button>
-        {boolenValue && (
+        {boolenValue && !currentData.tk && (
           <div className=" grid">
             <span className="mx-1 bg-yellow-500/15 px-2 ">
               Length {vl.lengthFeet}'{vl.lengthInch === "" ? 0 : vl.lengthInch}"
@@ -261,22 +261,26 @@ function CalculationResult({ currentData }) {
   const priceInDolar = cft * Number(perCFTdollar);
   const priceInTK = perCFTdollar * tk;
   return (
-    <div>
-      {!tk ? (
+    <>
+      {currentData && (
         <div>
-          <h3>Stone CFT(volume) Calculation</h3>
-          <p>
-            Volume(CFT): <strong>{cft ? cft : 0}</strong>{" "}
-          </p>
-          <p>Price: {priceInDolar ? Math.round(priceInDolar) : 0} tk</p>
-          {/* <p>Price In TK: {priceInTK ? priceInTK : 0}TK</p> */}
-        </div>
-      ) : (
-        <div>
-          Price: <strong>{priceInTK}</strong> tk
+          {!tk ? (
+            <div>
+              <h3>Stone CFT(volume) Calculation</h3>
+              <p>
+                Volume(CFT): <strong>{cft ? cft : 0}</strong>{" "}
+              </p>
+              <p>Price: {priceInDolar ? Math.round(priceInDolar) : 0} tk</p>
+              {/* <p>Price In TK: {priceInTK ? priceInTK : 0}TK</p> */}
+            </div>
+          ) : (
+            <div>
+              Price: <strong>{priceInTK}</strong> tk
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
