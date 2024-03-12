@@ -11,6 +11,7 @@ import User from "./login/User";
 import { fetchEvents } from "../services/https";
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import SocialLink from "../ui/SocialLink";
 
 function Homepage() {
   const [customDate] = useDate(0);
@@ -27,6 +28,7 @@ function Homepage() {
     <>
       {/* <input type="search" placeholder="Search...." ref={searchElement} /> */}
       <div>home</div>
+      <SocialLink />
       <motion.span
         initial={{ x: 0 }} //! it has to work 1(initaila value) 2(active when it add to the DOM)
         animate={{ x: 10 }}
